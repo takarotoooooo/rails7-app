@@ -1,12 +1,40 @@
 version: '3'
 services:
-  app:
+  db:
+    image: mysql:8.0
+    container_name: rails7-app.db
+    volumes:
+      - ./mysql/conf:/etc/mysql/conf.d
+      - ./mysql/data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: rails7-app_development
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+  webpacker:
     build:
       context: ./docker
       dockerfile: Dockerfile
     image: rails7-app:dev
-    container_name: rails7-app.app
+    container_name: rails7-app.webpacker
+    volumes:
+      - ./src:/appenv
+    command: >
+      bin/run_dev_webpacker
+    environment:
+      WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
+  rails:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
+    image: rails7-app:dev
+    container_name: rails7-app.rails
     tty: true
     stdin_open: true
     volumes:
       - ./src:/appenv
+    ports:
+      - '0.0.0.0:3003:3000'
+    command: >
+      bin/run_dev_server
+    environment:
+      MYSQL_HOST: db
+      WEBPACKER_DEV_SERVER_HOST: webpacker

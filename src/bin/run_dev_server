@@ -1,0 +1,11 @@
+#!/bin/bash
+SCRIPT_DIR=$(cd $(dirname $0); pwd)
+cd $SCRIPT_DIR/..
+
+bundle install --path=vendor/bundle
+
+wait-for-it db:3306 -t 180 -s -- bundle exec rake db:migrate
+if [ -e tmp/pids/server.pid ]; then
+  rm tmp/pids/server.pid
+fi
+bundle exec rails s -b 0.0.0.0
