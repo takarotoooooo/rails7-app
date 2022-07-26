@@ -8,3 +8,5 @@ services:
     container_name: rails7-app.app
     tty: true
     stdin_open: true
+    volumes:
+      - ./src:/appenv

@@ -7,6 +7,7 @@ https://hibbard.eu/rails-react-crud-app/
 こちらを参考に、適宜カスタマイズしてCRUDアプリケーションを作成する
 
 # 各種バージョン
+- Rails 7.0.3.1
 - Ruby 3.1.2
 - Node 16.16.0
 - yarn 1.22.19
