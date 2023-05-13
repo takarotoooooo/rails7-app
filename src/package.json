@@ -26,21 +26,17 @@
     "webpack-merge": "5"
   },
   "version": "0.1.0",
-  "babel": {
-    "presets": [
-      "./node_modules/shakapacker/package/babel/preset.js",
-      "@babel/preset-react"
-    ]
-  },
   "browserslist": [
     "defaults"
   ],
   "devDependencies": {
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
     "eslint": "^8.20.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.28.0",
-    "eslint-plugin-react-hooks": "^4.3.0"
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "react-refresh": "^0.14.0"
   }
 }
